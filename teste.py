@@ -20,7 +20,7 @@ COORDENADAS_PT = {
     'Zona Geral': (39.3999, -8.2245)
 }
 
-st.title("🏠 Simulador Avançado de Preços de Imóveis")
+st.title(" Simulador Avançado de Preços de Imóveis")
 st.write("Introduza os parâmetros para calcular previsões baseadas em modelos regularizados (Ridge/Lasso).")
 
 tipo_negocio = st.radio("O que deseja simular?", ["Arrendamento (Renda)", "Compra / Venda (Preço Total)"], horizontal=True)
@@ -49,7 +49,7 @@ try:
     col_esquerda, col_direita = st.columns([1, 1])
 
     with col_esquerda:
-        st.subheader("📋 Características do Imóvel")
+        st.subheader(" Características do Imóvel")
         with st.form("formulario_previsao"):
             area = st.number_input("Área Útil (m²)", min_value=10, max_value=1000, value=75, step=5, format="%d")
             quartos = st.number_input("Número de Quartos (0 para T0/Estúdio)", min_value=0, max_value=10, value=2, step=1, format="%d")
@@ -67,7 +67,7 @@ try:
             localizacao_selecionada = st.selectbox("📍 Selecione a Localização confirmada:", options=localizacoes, index=default_index)
             botao_prever = st.form_submit_button("🔮 Calcular Preço Estimado")
 
-        st.subheader("🗑️ Gestão de Regiões")
+        st.subheader(" Gestão de Regiões")
         regiao_para_remover = st.selectbox("Escolha uma região para ocultar do simulador:", options=["---"] + localizacoes)
         if st.button("Eliminar Região selecionada") and regiao_para_remover != "---":
             if regiao_para_remover not in st.session_state.regioes_eliminadas:
@@ -122,7 +122,7 @@ try:
 
 
     st.markdown("---")
-    aba1, aba2 = st.tabs(["📊 Comparador de Preços Inter-regiões", "💾 Histórico e Exportação"])
+    aba1, aba2 = st.tabs([" Comparador de Preços Inter-regiões", "💾 Histórico e Exportação"])
     
     with aba1:
         st.subheader("⚔️ Comparação de Preço Médio Anunciado")
@@ -139,14 +139,14 @@ try:
             st.info("Sem dados estatísticos guardados no modelo para gerar comparações.")
 
     with aba2:
-        st.subheader("📋 Simulações Guardadas nesta Sessão")
+        st.subheader(" Simulações Guardadas nesta Sessão")
         if st.session_state.historico:
             df_hist_visualizar = pd.DataFrame(st.session_state.historico)
             st.dataframe(df_hist_visualizar, use_container_width=True)
             
             csv = df_hist_visualizar.to_csv(index=False).encode('utf-8')
             st.download_button(
-                label="📥 Descarregar Histórico de Simulações (CSV)",
+                label=" Descarregar Histórico de Simulações (CSV)",
                 data=csv,
                 file_name="simulacoes_imobiliarias.csv",
                 mime="text/csv"
